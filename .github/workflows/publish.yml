@@ -1,0 +1,26 @@
+# Publish to JSR when a version tag is pushed.
+#
+# Uses OIDC (no token): link this repo to the package in the JSR package
+# settings page (jsr.io/@goodspeed/dbus-native -> Settings -> GitHub Actions).
+# Keep the tag and the `version` in jsr.json in sync, e.g. `v0.16.0`.
+
+name: publish
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - run: npx jsr publish

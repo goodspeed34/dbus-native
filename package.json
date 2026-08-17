@@ -39,12 +39,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goodspeed/dbus-native.git"
+    "url": "git+https://github.com/goodspeed34/dbus-native.git"
   },
   "bugs": {
-    "url": "https://github.com/goodspeed/dbus-native/issues"
+    "url": "https://github.com/goodspeed34/dbus-native/issues"
   },
-  "homepage": "https://github.com/goodspeed/dbus-native#readme",
+  "homepage": "https://github.com/goodspeed34/dbus-native#readme",
   "dependencies": {
     "xml2js": "^0.6.2"
   },

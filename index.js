@@ -1,3 +1,4 @@
+// @ts-self-types="./index.d.ts"
 // dbus.freedesktop.org/doc/dbus-specification.html
 
 import { EventEmitter } from 'node:events';

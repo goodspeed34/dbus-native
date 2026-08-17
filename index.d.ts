@@ -8,10 +8,11 @@
 // forward-compatible helpers (variantValue, toPlain, Variant) are typed to
 // accept both shapes so code written against them keeps type-checking.
 
-/// <reference types="node" />
+// Node types are imported explicitly (`node:events`, `node:stream`) so the
+// published .d.ts resolves in Deno without a `/// <reference types="node" />`.
 
-import { EventEmitter } from 'events';
-import { Duplex } from 'stream';
+import { EventEmitter } from 'node:events';
+import { Duplex } from 'node:stream';
 
 /**
  * What a call returns when no callback is given.

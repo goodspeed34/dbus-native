@@ -1,6 +1,6 @@
 {
   "name": "@goodspeed/dbus-native",
-  "version": "0.16.0",
+  "version": "0.16.1",
   "exports": {
     ".": "./index.js",
     "./compat": "./lib/compat.js",

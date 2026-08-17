@@ -7,9 +7,9 @@
 // `arg2`, ... which no address generator produces, so every argument on a
 // conformant address was silently dropped and the binary ran bare.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { connectToAddress, unixexecArgs } = require('../lib/address');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { connectToAddress, unixexecArgs } from '../lib/address.js';
 
 /**
  * Everything the child writes on stdout.

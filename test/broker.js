@@ -4,19 +4,13 @@
 // real marshaller -- the only thing that is not a normal client is that the bus
 // happens to live in this process.
 
-const {
-  describe,
-  it,
-  before,
-  after,
-  beforeEach,
-  afterEach
-} = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const dbus = require('../index');
-const constants = require('../lib/constants');
-const { REQUEST_NAME, RELEASE_NAME, NAME_FLAG } = require('../lib/broker');
+import { describe, it, before, after, beforeEach, afterEach } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import * as dbus from '../index.js';
+import constants from '../lib/constants.js';
+import { REQUEST_NAME, RELEASE_NAME, NAME_FLAG } from '../lib/broker.js';
+import { parseStringPromise } from 'xml2js';
 
 const DBUS = {
   destination: 'org.freedesktop.DBus',
@@ -413,7 +407,6 @@ describe('broker', { timeout: 20000 }, () => {
         interface: 'org.freedesktop.DBus.Introspectable',
         member: 'Introspect'
       });
-      const { parseStringPromise } = require('xml2js');
       const doc = await parseStringPromise(xml);
       const ifaces = doc.node.interface.map(i => i.$.name);
       assert.ok(ifaces.includes('org.freedesktop.DBus'));

@@ -7,11 +7,11 @@
 // asserted a plain object came *back*, which is why it could never have
 // passed: it was waiting on the read half too.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const marshall = require('../lib/marshall');
-const unmarshall = require('../lib/unmarshall');
-const { Variant, toPlain, variantSignature } = require('../lib/values');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import marshall from '../lib/marshall.js';
+import unmarshall from '../lib/unmarshall.js';
+import { Variant, toPlain, variantSignature } from '../lib/values.js';
 
 /** marshall, unmarshall, and flatten to plain JS. */
 function roundTrip(signature, data) {

@@ -1,8 +1,0 @@
-{
-  "name": "dbus-proxy",
-  "version": "0.0.0-unreleasable",
-  "private": true,
-  "dependencies": {
-    "sockjs": "^0.3.24"
-  }
-}

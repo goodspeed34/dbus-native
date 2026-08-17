@@ -4,7 +4,7 @@
  * `import { toClassicError, withClassicTypes } from 'dbus-native/compat'`
  */
 
-import type { MessageBus } from '../index';
+import type { MessageBus } from '../index.js';
 
 /**
  * The pre-0.7 error value: the error reply's body, with the properties 0.6

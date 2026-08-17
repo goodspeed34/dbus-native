@@ -5,11 +5,11 @@
 // awkward to arrange for real. test/integration/signals.js covers the same
 // surface end to end.
 
-const { describe, it, beforeEach } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const introspect = require('../lib/introspect');
-const { ConnectionClosedError } = require('../lib/errors');
+import { describe, it, beforeEach } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import * as introspect from '../lib/introspect.js';
+import { ConnectionClosedError } from '../lib/errors.js';
 
 const IFACE = 'com.example.Iface';
 const PATH = '/com/example/Obj';

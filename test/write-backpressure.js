@@ -1,11 +1,12 @@
 // The write path: does message() report backpressure, and are writes issued
 // in the same tick batched into one flush?
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { Duplex } = require('stream');
-const dbus = require('../index');
-const constants = require('../lib/constants');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { Duplex } from 'node:stream';
+import * as dbus from '../index.js';
+import constants from '../lib/constants.js';
+import * as message from '../lib/message.js';
 
 // A socket stand-in that records how many times the stream layer handed it
 // data, and can be told to stall so its buffer fills up.
@@ -131,7 +132,7 @@ describe('write backpressure', () => {
     const expected = [];
     for (let i = 1; i <= 5; i++) {
       const msg = call(i);
-      expected.push(require('../lib/message').marshall(msg));
+      expected.push(message.marshall(msg));
       conn.message(msg);
     }
     await new Promise(setImmediate);

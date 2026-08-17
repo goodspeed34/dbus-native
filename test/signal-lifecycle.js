@@ -3,10 +3,10 @@
 // rather than one per exportInterface call, and gone once the object is no
 // longer exported.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const MessageBus = require('../lib/bus');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import MessageBus from '../lib/bus.js';
 
 const IFACE = 'com.example.Iface';
 

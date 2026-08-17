@@ -1,11 +1,12 @@
 // Forward-compatible value helpers: the same call must work on the classic shapes
 // and on the 0.14.0 shapes, so each case is asserted against both.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const dbus = require('../index');
-const marshall = require('../lib/marshall');
-const unmarshall = require('../lib/unmarshall');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import * as dbus from '../index.js';
+import marshall from '../lib/marshall.js';
+import unmarshall from '../lib/unmarshall.js';
+import util from 'node:util';
 const { Variant, variantValue, variantSignature, toPlain } = dbus;
 
 // The classic shapes are asked for explicitly. They stopped being the default
@@ -174,7 +175,6 @@ describe('Variant', () => {
   });
 
   it('prints readably', () => {
-    const util = require('util');
     // the point: not a wall of parse-tree objects
     assert.strictEqual(util.inspect(new Variant('y', 1)), "Variant('y', 1)");
     assert.match(util.inspect(new Variant('as', ['a'])), /^Variant\('as', \[/);

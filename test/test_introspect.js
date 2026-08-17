@@ -1,7 +1,7 @@
-const { describe, it } = require('node:test');
-const introspect = require('../lib/introspect');
-const fs = require('fs');
-const path = require('path');
+import { describe, it } from 'node:test';
+import * as introspect from '../lib/introspect.js';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 // Introspection test cases
 const testCases = [{ desc: 'Basic Example', file: 'example' }];
@@ -17,7 +17,9 @@ describe('given introspect xml', () => {
 
 const dummyObj = {};
 function testXml(fname) {
-  const fpath = path.join(__dirname, 'fixtures', 'introspection', fname);
+  const fpath = fileURLToPath(
+    new URL(`./fixtures/introspection/${fname}`, import.meta.url)
+  );
   return new Promise((resolve, reject) => {
     // get expected data from json file
     fs.readFile(`${fpath}.json`, 'utf8', (err, data) => {

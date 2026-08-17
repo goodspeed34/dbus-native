@@ -10,11 +10,11 @@
 // option did not exist yet. It does now, so the simulation is gone and this
 // exercises the real thing.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const { toPlain } = require('../../lib/values');
-const dbus = require('../../index');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import { toPlain } from '../../lib/values.js';
+import * as dbus from '../../index.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';

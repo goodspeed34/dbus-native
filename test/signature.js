@@ -1,8 +1,8 @@
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const parseSignature = require('../lib/signature');
-const unmarshall = require('../lib/unmarshall');
-const marshall = require('../lib/marshall');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import parseSignature from '../lib/signature.js';
+import unmarshall from '../lib/unmarshall.js';
+import marshall from '../lib/marshall.js';
 
 describe('Signature parser', () => {
   it('parses a simple sequence', () => {

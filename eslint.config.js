@@ -1,20 +1,17 @@
-const js = require('@eslint/js');
-const globals = require('globals');
-const prettier = require('eslint-config-prettier/flat');
+import js from '@eslint/js';
+import globals from 'globals';
+import prettier from 'eslint-config-prettier/flat';
 
-module.exports = [
+export default [
   {
-    // `website/` is a separate npm project with a separate toolchain -- JSX and
-    // ESM, neither of which this config is set up to parse. It lints nothing of
-    // its own either; there are ten files in it and none ship.
-    ignores: ['node_modules/**', 'coverage/**', 'website/**']
+    ignores: ['node_modules/**', 'coverage/**', 'dist/**']
   },
   js.configs.recommended,
   prettier,
   {
     languageOptions: {
-      ecmaVersion: 2023,
-      sourceType: 'commonjs',
+      ecmaVersion: 2025,
+      sourceType: 'module',
       globals: {
         ...globals.node,
         // Explicit resource management. Measured, not assumed:
@@ -40,13 +37,6 @@ module.exports = [
       'no-useless-concat': 'error',
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }]
     }
-  },
-  {
-    // The package is CommonJS, so `sourceType: 'commonjs'` above is right for
-    // everything except the one file that deliberately is not: the ESM interop
-    // check, which has to be real ESM to be worth anything.
-    files: ['**/*.mjs'],
-    languageOptions: { sourceType: 'module' }
   }
 ];
 // No test-globals block: node:test has no globals, so describe/it/before are

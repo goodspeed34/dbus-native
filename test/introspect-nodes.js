@@ -5,9 +5,9 @@
 // used to advertise no children at all, so a tree built with this library
 // could not be walked -- see #140.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const stdifaces = require('../lib/stdifaces');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import stdifaces from '../lib/stdifaces.js';
 
 const iface = name => ({
   name,

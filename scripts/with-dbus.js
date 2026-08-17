@@ -7,8 +7,8 @@
 // Starts a throwaway dbus-daemon, exports DBUS_SESSION_BUS_ADDRESS for the
 // child, then tears the daemon down when the child exits.
 
-const { spawn } = require('child_process');
-const { startSessionBus } = require('./dbus-daemon');
+import { spawn } from 'node:child_process';
+import { startSessionBus } from './dbus-daemon.js';
 
 const argv = process.argv.slice(2);
 const args = argv[0] === '--' ? argv.slice(1) : argv;

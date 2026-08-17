@@ -5,10 +5,11 @@
 // PropertiesChanged, signals, and the introspection XML a client reads to build
 // a proxy from it.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const dbus = require('../../index');
-const { sessionBus } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import * as dbus from '../../index.js';
+import { sessionBus } from '../utils/shape.js';
+import { toPlain } from '../../lib/values.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';
@@ -159,7 +160,7 @@ describe(
         await proxy.$props.$set('Volume', 0.25);
         const [interfaceName, values] = await changed;
         assert.strictEqual(interfaceName, IFACE);
-        assert.deepStrictEqual(require('../../lib/values').toPlain(values), {
+        assert.deepStrictEqual(toPlain(values), {
           Volume: 0.25
         });
       });

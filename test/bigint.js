@@ -5,14 +5,15 @@
 // use the exact boundary values, because that is where the old behaviour was
 // wrong and where an off-by-one in the conversion would hide.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { PassThrough } = require('stream');
-const dbus = require('../index');
-const marshall = require('../lib/marshall');
-const unmarshall = require('../lib/unmarshall');
-const DBusBuffer = require('../lib/dbus-buffer');
-const constants = require('../lib/constants');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { PassThrough } from 'node:stream';
+import * as dbus from '../index.js';
+import marshall from '../lib/marshall.js';
+import unmarshall from '../lib/unmarshall.js';
+import DBusBuffer from '../lib/dbus-buffer.js';
+import constants from '../lib/constants.js';
+import Long from 'long';
 
 const INT64_MAX = 9223372036854775807n;
 const INT64_MIN = -9223372036854775808n;
@@ -216,8 +217,6 @@ describe('BigInt: diagnostics survive a bigint body', () => {
 // which is what these cover. `long` is a devDependency now, only so the tests
 // can build the objects they are asserting about.
 describe('64-bit values without Long.js', () => {
-  const Long = require('long');
-
   describe('Long.js is still accepted on write', () => {
     const cases = [
       [

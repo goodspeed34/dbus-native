@@ -1,0 +1,66 @@
+{
+  "name": "@goodspeed/dbus-native",
+  "version": "0.16.0",
+  "exports": {
+    ".": "./index.js",
+    "./compat": "./lib/compat.js",
+    "./package.json": "./package.json",
+    "./lib/address.js": "./lib/address.js",
+    "./lib/broker.js": "./lib/broker.js",
+    "./lib/bus.js": "./lib/bus.js",
+    "./lib/constants.js": "./lib/constants.js",
+    "./lib/dbus-buffer.js": "./lib/dbus-buffer.js",
+    "./lib/define-interface.js": "./lib/define-interface.js",
+    "./lib/deprecate.js": "./lib/deprecate.js",
+    "./lib/diagnostics.js": "./lib/diagnostics.js",
+    "./lib/errors.js": "./lib/errors.js",
+    "./lib/handshake.js": "./lib/handshake.js",
+    "./lib/hello-message.js": "./lib/hello-message.js",
+    "./lib/introspect.js": "./lib/introspect.js",
+    "./lib/managed-objects.js": "./lib/managed-objects.js",
+    "./lib/marshall.js": "./lib/marshall.js",
+    "./lib/marshallers.js": "./lib/marshallers.js",
+    "./lib/match-rule.js": "./lib/match-rule.js",
+    "./lib/message.js": "./lib/message.js",
+    "./lib/names.js": "./lib/names.js",
+    "./lib/object-manager.js": "./lib/object-manager.js",
+    "./lib/promisify.js": "./lib/promisify.js",
+    "./lib/properties.js": "./lib/properties.js",
+    "./lib/proxy.js": "./lib/proxy.js",
+    "./lib/readline.js": "./lib/readline.js",
+    "./lib/server.js": "./lib/server.js",
+    "./lib/server-handshake.js": "./lib/server-handshake.js",
+    "./lib/signal-stream.js": "./lib/signal-stream.js",
+    "./lib/signature.js": "./lib/signature.js",
+    "./lib/stdifaces.js": "./lib/stdifaces.js",
+    "./lib/unmarshall.js": "./lib/unmarshall.js",
+    "./lib/values.js": "./lib/values.js",
+    "./lib/writer.js": "./lib/writer.js"
+  },
+  "imports": {
+    "xml2js": "npm:xml2js@^0.6.2"
+  },
+  "publish": {
+    "include": [
+      "index.js",
+      "index.d.ts",
+      "lib/*.js",
+      "lib/*.d.ts",
+      "lib/*.json",
+      "package.json",
+      "LICENSE",
+      "README.md"
+    ],
+    "exclude": [
+      "test/",
+      "scripts/",
+      "docs/",
+      "CHANGELOG.md",
+      "eslint.config.js",
+      "tsconfig.json",
+      ".github/",
+      "package-lock.json",
+      "bun.lock"
+    ]
+  }
+}

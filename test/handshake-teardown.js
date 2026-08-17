@@ -9,10 +9,10 @@
 // seven on the run that surfaced it. These tests close at each point the
 // handshake can be interrupted, deterministically.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { Duplex } = require('stream');
-const dbus = require('../index');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { Duplex } from 'node:stream';
+import * as dbus from '../index.js';
 
 // A socket stand-in that behaves like a real one on write-after-end: throws
 // asynchronously via an 'error' event rather than returning false.

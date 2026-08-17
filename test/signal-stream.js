@@ -4,13 +4,13 @@
 // behaviour is all at the seam where the consumer is slower than the producer.
 // None of that needs a daemon.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const {
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import {
   signalStream,
   normaliseQueue,
   DEFAULT_QUEUE
-} = require('../lib/signal-stream');
+} from '../lib/signal-stream.js';
 
 /** A subscribe() that hands back the emitter, and records removal. */
 function fakeSource() {

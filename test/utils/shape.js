@@ -19,7 +19,7 @@
 // which world they are in with VARIANTS / RETURN_BIGINT rather than pretending
 // to be agnostic.
 
-const dbus = require('../../index');
+import * as dbus from '../../index.js';
 
 const SHAPE = process.env.DBUS_TEST_SHAPE || 'plain';
 
@@ -61,11 +61,4 @@ function sessionBus(opts) {
   return dbus.sessionBus({ ...DEFAULTS, ...opts });
 }
 
-module.exports = {
-  sessionBus,
-  SHAPE,
-  VARIANTS,
-  PLAIN_VALUES,
-  RETURN_BIGINT,
-  CLASSIC
-};
+export { sessionBus, SHAPE, VARIANTS, PLAIN_VALUES, RETURN_BIGINT, CLASSIC };

@@ -5,9 +5,9 @@
 // library. What needs a daemon is only that a service built this way answers,
 // which is the integration test.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { defineInterface } = require('../lib/define-interface');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { defineInterface } from '../lib/define-interface.js';
 
 const MESSAGE = {
   sender: ':1.7',

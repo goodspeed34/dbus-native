@@ -6,11 +6,11 @@
 // registered, so a caller got the exception immediately and a TimeoutError 25
 // seconds later for a message that never left the process.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const MessageBus = require('../lib/bus');
-const constants = require('../lib/constants');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import MessageBus from '../lib/bus.js';
+import constants from '../lib/constants.js';
 
 /** A connection whose write always fails, the way marshalling does. */
 function unsendable() {

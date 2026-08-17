@@ -7,11 +7,11 @@
 // worse than a red one. So the shape is asserted against a real daemon rather
 // than assumed.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const { variantValue, variantSignature, Variant } = require('../../lib/values');
-const { sessionBus, VARIANTS, RETURN_BIGINT } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import { variantValue, variantSignature, Variant } from '../../lib/values.js';
+import { sessionBus, VARIANTS, RETURN_BIGINT } from '../utils/shape.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';

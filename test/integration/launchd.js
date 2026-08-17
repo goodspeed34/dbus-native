@@ -8,12 +8,12 @@
 // re-expressed as launchd:env=... with `launchctl` stubbed on PATH, so nothing
 // touches the user's real login session.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const { sessionBus } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { sessionBus } from '../utils/shape.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';

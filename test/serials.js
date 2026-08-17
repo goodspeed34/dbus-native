@@ -5,11 +5,12 @@
 // message with 'Number outside range' -- about fifty days at a thousand
 // messages a second.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { Duplex } = require('stream');
-const dbus = require('../index');
-const message = require('../lib/message');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { Duplex } from 'node:stream';
+import * as dbus from '../index.js';
+import * as message from '../lib/message.js';
+import { EventEmitter } from 'node:events';
 
 class FakeSocket extends Duplex {
   constructor() {
@@ -97,7 +98,6 @@ describe('message serials', () => {
   // ceiling.
   it('an exported signal consumes exactly one serial', async () => {
     const { bus } = await connectBus();
-    const { EventEmitter } = require('events');
     const impl = Object.assign(Object.create(EventEmitter.prototype), {});
     EventEmitter.call(impl);
     bus.exportInterface(impl, '/com/example/Obj', ifaceDesc);
@@ -113,7 +113,6 @@ describe('message serials', () => {
 
   it('emitting a signal the interface does not declare takes no serial', async () => {
     const { bus } = await connectBus();
-    const { EventEmitter } = require('events');
     const impl = Object.assign(Object.create(EventEmitter.prototype), {});
     EventEmitter.call(impl);
     bus.exportInterface(impl, '/com/example/Obj2', ifaceDesc);

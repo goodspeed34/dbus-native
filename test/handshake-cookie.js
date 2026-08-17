@@ -8,14 +8,14 @@
 //
 // https://dbus.freedesktop.org/doc/dbus-specification.html#auth-mechanisms-sha
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const crypto = require('crypto');
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const { Duplex } = require('stream');
-const auth = require('../lib/handshake');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { Duplex } from 'node:stream';
+import auth from '../lib/handshake.js';
 
 const CONTEXT = 'org_freedesktop_general';
 const COOKIE_ID = '162004020';

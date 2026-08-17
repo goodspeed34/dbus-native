@@ -1,12 +1,12 @@
 // The promise API, end to end against a real dbus-daemon. Each case also
 // asserts the callback form still behaves, since 0.6 must not break it.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const dbus = require('../../index');
-const { sessionBus } = require('../utils/shape');
-const { DBusError } = require('../../lib/errors');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import * as dbus from '../../index.js';
+import { sessionBus } from '../utils/shape.js';
+import { DBusError } from '../../lib/errors.js';
 
 // node:test skips a whole suite from its options, evaluated at load time.
 const NO_BUS =

@@ -1,10 +1,11 @@
-const { describe, it } = require('node:test');
-const fs = require('fs');
-const assert = require('assert');
-const unmarshall = require('../lib/message').unmarshall;
-const marshall = require('../lib/message').marshall;
+import { describe, it } from 'node:test';
+import fs from 'node:fs';
+import assert from 'node:assert';
+import { fileURLToPath } from 'node:url';
+import { unmarshall } from '../lib/message.js';
+import { marshall } from '../lib/message.js';
 
-const dir = `${__dirname}/fixtures/messages/`;
+const dir = fileURLToPath(new URL('./fixtures/messages/', import.meta.url));
 
 describe('given base-64 encoded files with complete messages', () => {
   it('should be able to read them all', () => {

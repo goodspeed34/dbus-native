@@ -5,10 +5,10 @@
 // silently replaced by its first child, and the child list dropped whichever
 // child came first.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const introspect = require('../lib/introspect');
-const { UnknownInterfaceError } = require('../lib/errors');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import * as introspect from '../lib/introspect.js';
+import { UnknownInterfaceError } from '../lib/errors.js';
 
 const PATH = '/com/example/Obj';
 

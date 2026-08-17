@@ -1,10 +1,10 @@
 // diagnostics_channel instrumentation, observed against a real dbus-daemon.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const dc = require('node:diagnostics_channel');
-const { EventEmitter } = require('events');
-const { sessionBus } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import dc from 'node:diagnostics_channel';
+import { EventEmitter } from 'node:events';
+import { sessionBus } from '../utils/shape.js';
 
 // node:test skips a whole suite from its options, evaluated at load time.
 const NO_BUS =

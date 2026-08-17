@@ -4,10 +4,10 @@
 // way to drive the interesting transitions on demand -- BlueZ will not add a
 // device because a test asked it to.
 
-const { describe, it, before, after, beforeEach } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const { sessionBus } = require('../utils/shape');
+import { describe, it, before, after, beforeEach } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import { sessionBus } from '../utils/shape.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';

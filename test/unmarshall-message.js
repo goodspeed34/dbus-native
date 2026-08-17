@@ -1,6 +1,7 @@
-const { describe, it } = require('node:test');
-const message = require('../lib/message');
-const assert = require('assert');
+import { describe, it } from 'node:test';
+import * as message from '../lib/message.js';
+import assert from 'node:assert';
+import tests from './utils/testdata.js';
 
 function msg2buff(msg) {
   return message.marshall(msg);
@@ -11,7 +12,6 @@ function buff2msg(buff) {
 }
 
 describe('message marshall/unmarshall', () => {
-  const tests = require('./utils/testdata.js');
   let testName, testData, testNum;
   for (testName in tests) {
     for (testNum = 0; testNum < tests[testName].length; ++testNum) {

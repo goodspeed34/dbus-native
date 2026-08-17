@@ -1,8 +1,15 @@
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { execFileSync } = require('child_process');
-const { maybePromise } = require('../lib/promisify');
-const { DBusError, toDBusError } = require('../lib/errors');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { maybePromise } from '../lib/promisify.js';
+import { DBusError, toDBusError } from '../lib/errors.js';
+
+// Absolute path for the embedded child-process script (CJS, run via
+// `node -e`), computed here because `require.resolve` does not exist in ESM.
+const PROMISIFY_PATH = fileURLToPath(
+  new URL('../lib/promisify.js', import.meta.url)
+);
 
 // Stand-in for an operation that calls back asynchronously. Returns undefined,
 // like the real ones do.
@@ -94,7 +101,7 @@ describe('maybePromise', () => {
   // silently-dropped failure into a process-terminating unhandled rejection.
   it('does not produce an unhandled rejection when the result is ignored', () => {
     const script = `
-      const { maybePromise } = require(${JSON.stringify(require.resolve('../lib/promisify'))});
+      const { maybePromise } = require(${JSON.stringify(PROMISIFY_PATH)});
       process.on('unhandledRejection', e => {
         console.error('UNHANDLED');
         process.exit(3);

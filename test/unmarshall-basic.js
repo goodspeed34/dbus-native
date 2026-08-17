@@ -1,8 +1,8 @@
-const { describe, it } = require('node:test');
-const marshall = require('../lib/marshall');
-const unmarshall = require('../lib/unmarshall');
-const assert = require('assert');
-const Long = require('long');
+import { describe, it } from 'node:test';
+import marshall from '../lib/marshall.js';
+import unmarshall from '../lib/unmarshall.js';
+import assert from 'node:assert';
+import Long from 'long';
 
 const LongMaxS64 = Long.fromString('9223372036854775807', false);
 const LongMinS64 = Long.fromString('-9223372036854775808', false);

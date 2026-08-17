@@ -9,11 +9,11 @@
 // left to the default, so the file keeps saying what it means whichever way
 // the default points.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const marshall = require('../lib/marshall');
-const unmarshall = require('../lib/unmarshall');
-const { Variant, toPlain, variantSignature } = require('../lib/values');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import marshall from '../lib/marshall.js';
+import unmarshall from '../lib/unmarshall.js';
+import { Variant, toPlain, variantSignature } from '../lib/values.js';
 
 const PLAIN = { plainValues: true };
 const CLASSIC = { plainValues: false };

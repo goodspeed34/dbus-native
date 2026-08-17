@@ -7,7 +7,7 @@
 // Prints the export line you can paste into another shell to point examples and
 // scripts at this bus. Ctrl-C shuts it down and removes its socket.
 
-const { startSessionBus } = require('./dbus-daemon');
+import { startSessionBus } from './dbus-daemon.js';
 
 startSessionBus().then(
   ({ address, stop, child }) => {

@@ -2,12 +2,12 @@
 //
 // https://dbus.freedesktop.org/doc/dbus-specification.html#message-protocol-names
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { Duplex } = require('stream');
-const marshall = require('../lib/marshall');
-const dbus = require('../index');
-const {
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { Duplex } from 'node:stream';
+import marshall from '../lib/marshall.js';
+import * as dbus from '../index.js';
+import {
   isValidObjectPath,
   isValidInterfaceName,
   isValidErrorName,
@@ -15,7 +15,7 @@ const {
   isValidPropertyName,
   isValidBusName,
   assertValidName
-} = require('../lib/names');
+} from '../lib/names.js';
 
 const longName = `a.${'b'.repeat(300)}`;
 

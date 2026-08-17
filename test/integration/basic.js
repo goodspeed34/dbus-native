@@ -6,10 +6,11 @@
 // These use the callback form deliberately: `(err, result)` is public API, so
 // something has to keep exercising it.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { variantValue, toPlain } = require('../../lib/values');
-const { sessionBus } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { variantValue, toPlain } from '../../lib/values.js';
+import { sessionBus } from '../utils/shape.js';
+import { EventEmitter } from 'node:events';
 
 // node:test skips a whole suite from its options, evaluated at load time.
 const NO_BUS =
@@ -48,7 +49,6 @@ function makeImpl() {
     }
   };
   // exportInterface monkey-patches emit() to also send the signal on the bus
-  const { EventEmitter } = require('events');
   Object.setPrototypeOf(impl, EventEmitter.prototype);
   EventEmitter.call(impl);
   return impl;

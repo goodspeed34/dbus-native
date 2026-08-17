@@ -6,9 +6,9 @@
 // forgetting is why a long-lived process ends up being sent signals nothing
 // still listens for.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { sessionBus } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { sessionBus } from '../utils/shape.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';

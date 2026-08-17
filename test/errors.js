@@ -4,17 +4,13 @@
 // is unit-testable here is everything raised locally -- a dead connection, the
 // empty-body fallback, and the compat shim.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { Duplex } = require('stream');
-const dbus = require('../index');
-const { toClassicError } = require('../lib/compat');
-const {
-  DBusError,
-  ConnectionClosedError,
-  fromReply
-} = require('../lib/errors');
-const constants = require('../lib/constants');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { Duplex } from 'node:stream';
+import * as dbus from '../index.js';
+import { toClassicError } from '../lib/compat.js';
+import { DBusError, ConnectionClosedError, fromReply } from '../lib/errors.js';
+import constants from '../lib/constants.js';
 
 class FakeSocket extends Duplex {
   _write(chunk, enc, cb) {

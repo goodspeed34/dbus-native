@@ -1,13 +1,13 @@
 // The forward-compatible helpers, exercised against a real dbus-daemon so the
 // values really are the ones the parser produces.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const dbus = require('../../index');
-const { sessionBus, VARIANTS } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import * as dbus from '../../index.js';
+import { sessionBus, VARIANTS } from '../utils/shape.js';
 const { Variant, variantValue, toPlain } = dbus;
-const { toClassicError } = require('../../lib/compat');
+import { toClassicError } from '../../lib/compat.js';
 
 // node:test skips a whole suite from its options, evaluated at load time.
 const NO_BUS =

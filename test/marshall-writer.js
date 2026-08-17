@@ -1,11 +1,12 @@
 // Properties of the cursor-based marshaller that the round-trip tests in
 // unmarshall-basic.js would not catch on their own.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const marshall = require('../lib/marshall');
-const unmarshall = require('../lib/unmarshall');
-const Writer = require('../lib/writer');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import marshall from '../lib/marshall.js';
+import unmarshall from '../lib/unmarshall.js';
+import Writer from '../lib/writer.js';
+import * as message from '../lib/message.js';
 
 describe('marshall: byte arrays', () => {
   const bytes = [0, 1, 2, 127, 128, 254, 255];
@@ -47,8 +48,6 @@ describe('marshall: byte arrays', () => {
 });
 
 describe('unmarshall: ay buffer ownership', () => {
-  const message = require('../lib/message');
-
   // A small ay carried in a large message used to be returned as a view, so
   // holding four bytes kept the whole message reachable.
   const wire = message.marshall({

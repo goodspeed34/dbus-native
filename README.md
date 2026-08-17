@@ -1,28 +1,47 @@
-dbus-native
-===========
+# dbus-native (fork — `@goodspeed/dbus-native`)
 
-D-bus protocol client and server for node.js, implemented in pure JavaScript —
-no native addons and no build step.
+> **Fork notice.** This is a fork of [sidorares/node-dbus](https://github.com/sidorares/dbus-native)
+> (upstream v0.15.1) that converts the package to **ESM** so it runs on
+> **Node.js, Bun, and Deno** with no changes, and publishes it on
+> **JSR** as [`@goodspeed/dbus-native`](https://jsr.io/@goodspeed/dbus-native).
+> The upstream CLI tooling (`bin/`, `lib/cli`, codegen, codemods) is not
+> included; this is the library only. Upstream attribution is retained in
+> `LICENSE` and `CHANGELOG.md`.
 
-[![CI](https://github.com/sidorares/dbus-native/actions/workflows/ci.yml/badge.svg)](https://github.com/sidorares/dbus-native/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/dbus-native.svg)](https://www.npmjs.com/package/dbus-native)
+D-bus protocol client and server, implemented in pure JavaScript — no native
+addons and no build step.
 
 Installation
 ------------
 
 ```shell
-npm install dbus-native
+# Deno
+deno add @goodspeed/dbus-native
+
+# npm / Bun (installs through JSR's npm-compat registry)
+npx jsr add @goodspeed/dbus-native
+# bun add @goodspeed/dbus-native   # equivalent
+
+# plain npm (resolves to the @jsr compatibility package)
+npm install @jsr/goodspeed__dbus-native
 ```
 
-Requires Node.js 22.12.0 or newer.
+Requires Node.js 22.12.0 or newer; works on Bun 1.2+ and Deno 2+.
+
+Run the cross-runtime smoke check with:
+
+```shell
+node scripts/smoke.mjs
+bun scripts/smoke.mjs
+deno run -A scripts/smoke.mjs
+```
 
 Or from a checkout:
 
 ```shell
-git clone https://github.com/sidorares/dbus-native
+git clone https://github.com/sidorares/node-dbus
 cd dbus-native
 npm install # install dependencies
-sudo cp examples/com.github.sidorares.dbus.Example.conf /etc/dbus-1/system.d/ # if you want to test examples/service.js
 ```
 
 Usage

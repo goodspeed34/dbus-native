@@ -5,9 +5,12 @@
 // .d.ts regardless. That gap shipped in 0.6: DBusError was documented, typed,
 // and undefined at runtime. This asserts the runtime side.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const dbus = require('../index');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import * as dbus from '../index.js';
+import { withClassicTypes, toClassicError } from '../lib/compat.js';
+import marshall from '../lib/marshall.js';
+import unmarshall from '../lib/unmarshall.js';
 
 describe('public exports', () => {
   it('exports the error classes so instanceof works', () => {
@@ -61,5 +64,55 @@ describe('public exports', () => {
       assert.strictEqual(typeof dbus[name], 'function', `${name} is exported`);
     }
     assert.strictEqual(typeof dbus.messageType, 'object');
+  });
+});
+
+// The package is ESM now, so every runtime export is a named import by
+// construction. These checks keep the surface honest anyway -- a refactor that
+// drops an export would fail here.
+describe('ESM surface', () => {
+  it('exposes the full runtime surface', () => {
+    const expected = [
+      'AbortError',
+      'ConnectionClosedError',
+      'DBusError',
+      'TimeoutError',
+      'UnknownInterfaceError',
+      'Variant',
+      'createBroker',
+      'createClient',
+      'createConnection',
+      'createServer',
+      'defineInterface',
+      'isValidBusName',
+      'isValidErrorName',
+      'isValidInterfaceName',
+      'isValidMemberName',
+      'isValidObjectPath',
+      'isValidPropertyName',
+      'messageType',
+      'sessionBus',
+      'systemBus',
+      'toPlain',
+      'variantSignature',
+      'variantValue'
+    ];
+    const missing = expected.filter(k => !(k in dbus));
+    assert.deepStrictEqual(missing, [], `not exported: ${missing.join(', ')}`);
+  });
+
+  it('resolves the compat subpath', () => {
+    assert.strictEqual(typeof withClassicTypes, 'function');
+    assert.strictEqual(typeof toClassicError, 'function');
+  });
+
+  it('resolves deep lib/ subpaths', () => {
+    assert.strictEqual(typeof marshall, 'function');
+    assert.strictEqual(typeof unmarshall, 'function');
+  });
+
+  it('round-trips a value through the imported functions', () => {
+    const [dict] = unmarshall(marshall('a{sv}', [{ n: 7n }]), 'a{sv}');
+    assert.deepStrictEqual(dbus.toPlain(dict), { n: 7n });
   });
 });

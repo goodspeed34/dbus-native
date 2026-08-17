@@ -8,12 +8,12 @@
 // attribute: it makes the whole document ill-formed, so a peer's parser throws
 // and the caller loses every interface on the object.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const xml2js = require('xml2js');
-const stdifaces = require('../lib/stdifaces');
-const constants = require('../lib/constants');
-const { processXML } = require('../lib/introspect');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import * as xml2js from 'xml2js';
+import stdifaces from '../lib/stdifaces.js';
+import constants from '../lib/constants.js';
+import { processXML } from '../lib/introspect.js';
 
 // Drive the real Introspect handler and hand back the XML it would send.
 function introspect(path, iface) {

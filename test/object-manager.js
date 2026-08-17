@@ -4,9 +4,9 @@
 // cases -- '/' is not like any other path, and "below" has to exclude the
 // manager itself and near-misses like /a/bc under /a/b.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const om = require('../lib/object-manager');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import * as om from '../lib/object-manager.js';
 
 // Two objects' worth of exportedObjects, in the shape bus.js keeps.
 const exported = (properties, impl) => ({

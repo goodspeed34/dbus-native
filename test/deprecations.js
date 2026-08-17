@@ -1,6 +1,6 @@
-const { describe, it, beforeEach } = require('node:test');
-const assert = require('assert');
-const deprecate = require('../lib/deprecate');
+import { describe, it, beforeEach } from 'node:test';
+import assert from 'node:assert';
+import deprecate from '../lib/deprecate.js';
 
 describe('deprecate()', () => {
   beforeEach(() => deprecate.reset());

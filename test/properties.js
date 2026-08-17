@@ -4,10 +4,11 @@
 // service uses, so most of what matters here is that it keeps meaning exactly
 // what it did.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const properties = require('../lib/properties');
-const constants = require('../lib/constants');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import * as properties from '../lib/properties.js';
+import constants from '../lib/constants.js';
+import marshall from '../lib/marshall.js';
 
 const iface = props => ({ name: 'a.b.C', properties: props });
 
@@ -119,7 +120,6 @@ describe('PropertiesChanged signal', () => {
 
   it('marshalls', () => {
     // The signature and body have to agree or this throws.
-    const marshall = require('../lib/marshall');
     const sig = properties.changedSignal(1, '/a', 'a.b.C', [], []);
     assert.ok(marshall(sig.signature, sig.body).length > 0);
   });

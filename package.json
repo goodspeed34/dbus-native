@@ -1,7 +1,7 @@
 {
   "name": "dbus-native",
   "author": "Andrey Sidorov <sidorares@yandex.com>",
-  "version": "0.15.1",
+  "version": "0.16.0",
   "keywords": [
     "dbus",
     "dcop",
@@ -10,9 +10,9 @@
     "gnome",
     "kde"
   ],
-  "description": "D-bus protocol implementation in native javascript",
+  "description": "D-bus protocol implementation in native javascript (ESM, cross-runtime fork)",
+  "type": "module",
   "files": [
-    "bin/dbus-native.js",
     "lib/*",
     "index.js",
     "index.d.ts",
@@ -20,8 +20,7 @@
   ],
   "directories": {
     "lib": "lib",
-    "test": "test",
-    "examples": "examples"
+    "test": "test"
   },
   "main": "index.js",
   "exports": {
@@ -37,24 +36,15 @@
     "./lib/*.js": "./lib/*.js",
     "./lib/*": "./lib/*.js"
   },
-  "maintainers": [
-    {
-      "name": "Andrey Sidorov",
-      "email": "sidoares@yandex.ru"
-    }
-  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sidorares/dbus-native.git"
+    "url": "git+https://github.com/goodspeed/dbus-native.git"
   },
   "bugs": {
-    "url": "https://github.com/sidorares/dbus-native/issues"
+    "url": "https://github.com/goodspeed/dbus-native/issues"
   },
-  "homepage": "https://github.com/sidorares/dbus-native#readme",
-  "bin": {
-    "dbus-native": "./bin/dbus-native.js"
-  },
+  "homepage": "https://github.com/goodspeed/dbus-native#readme",
   "dependencies": {
     "xml2js": "^0.6.2"
   },
@@ -64,7 +54,6 @@
     "eslint": "^10.8.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.8.0",
-    "jscodeshift": "^17.4.0",
     "long": "^5.3.2",
     "prettier": "^3.9.6",
     "typescript": "^7.0.2"
@@ -75,7 +64,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "npm run lint && npm run format:check && npm run test:types && npm run test:raw",
-    "test:raw": "node --test --test-reporter=spec test/*.js test/*.mjs",
+    "test:raw": "node --test --test-reporter=spec test/*.js",
+    "test:bun": "bun test test/",
+    "test:deno": "deno test --allow-all test/",
     "test:integration": "node scripts/with-dbus.js -- npm run test:integration:raw",
     "test:integration:raw": "node --test --test-reporter=spec test/integration/*.js",
     "test:integration:broker": "node scripts/with-broker.js -- npm run test:integration:raw",

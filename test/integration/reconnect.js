@@ -11,12 +11,13 @@
 // Uses its own broker rather than the shared daemon, because the point is to
 // stop the bus mid-run and nothing else in the suite would survive that.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const dbus = require('../../index');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import * as dbus from '../../index.js';
+import { PassThrough } from 'node:stream';
 
 const SERVICE = 'com.github.sidorares.dbusnative.Reconnecting';
 const PATH = '/com/github/sidorares/dbusnative/Reconnecting';
@@ -77,7 +78,6 @@ describe('integration: reconnect', { timeout: 30000 }, () => {
 
   it('refuses to pair with a caller-supplied stream', () => {
     // There is no way to reopen a stream we did not dial.
-    const { PassThrough } = require('stream');
     assert.throws(
       () => dbus.createClient({ stream: new PassThrough(), reconnect: true }),
       /cannot be used with opts\.stream/

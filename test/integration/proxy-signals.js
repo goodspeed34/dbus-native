@@ -8,10 +8,10 @@
 // The queue policy is unit-tested in test/signal-stream.js without a bus. What
 // needs a daemon is that the match rule really goes on and really comes off.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const { sessionBus } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import { sessionBus } from '../utils/shape.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';

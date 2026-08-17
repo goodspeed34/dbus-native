@@ -4,11 +4,11 @@
 //
 // Both found by auditing the @homebridge/dbus-native fork.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const MessageBus = require('../lib/bus');
-const constants = require('../lib/constants');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import MessageBus from '../lib/bus.js';
+import constants from '../lib/constants.js';
 
 function fakeConn() {
   const conn = new EventEmitter();

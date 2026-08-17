@@ -1,11 +1,11 @@
 // Call timeouts and AbortSignal support, and the pending-call bookkeeping
 // that goes with them.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const MessageBus = require('../lib/bus');
-const constants = require('../lib/constants');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import MessageBus from '../lib/bus.js';
+import constants from '../lib/constants.js';
 
 // A connection that records what was sent and lets a test reply by hand.
 function fakeBus(opts = {}) {

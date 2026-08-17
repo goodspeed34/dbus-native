@@ -4,10 +4,10 @@
 // `dbus-daemon` against it, so nothing touches (or depends on) the user's real
 // session bus. Works the same on macOS (`brew install dbus`) and Linux.
 
-const { spawn, spawnSync } = require('child_process');
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
+import { spawn, spawnSync } from 'node:child_process';
+import * as fs from 'node:fs';
+import * as os from 'node:os';
+import * as path from 'node:path';
 
 // `unix:dir=` (rather than `tmpdir=`) forces a real socket file on Linux too,
 // which keeps the address shape identical across platforms.
@@ -86,4 +86,4 @@ function startSessionBus() {
   });
 }
 
-module.exports = { startSessionBus };
+export { startSessionBus };

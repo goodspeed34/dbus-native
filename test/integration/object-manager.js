@@ -6,11 +6,11 @@
 // the declaration, the introspection XML, the reply body, and the two signals
 // actually arriving at a subscriber.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const { toPlain } = require('../../lib/values');
-const { sessionBus } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import { toPlain } from '../../lib/values.js';
+import { sessionBus } from '../utils/shape.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';

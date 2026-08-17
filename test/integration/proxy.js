@@ -5,11 +5,11 @@
 // which means the interesting cases are the ones where that resolution is
 // ambiguous or where the name collides with something JavaScript expects.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const util = require('util');
-const { EventEmitter } = require('events');
-const { sessionBus } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import util from 'node:util';
+import { EventEmitter } from 'node:events';
+import { sessionBus } from '../utils/shape.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';

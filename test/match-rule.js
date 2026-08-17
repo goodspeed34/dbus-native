@@ -2,10 +2,10 @@
 //
 // https://dbus.freedesktop.org/doc/dbus-specification.html#message-bus-routing-match-rules
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { parse, matches, tokenize } = require('../lib/match-rule');
-const constants = require('../lib/constants');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { parse, matches, tokenize } from '../lib/match-rule.js';
+import constants from '../lib/constants.js';
 
 const signal = (overrides = {}) => ({
   type: constants.messageType.signal,

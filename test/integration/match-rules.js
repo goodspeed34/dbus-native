@@ -10,10 +10,11 @@
 // This matters for lib/broker.js, which has to accept whatever a client that
 // works against dbus-daemon sends it.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { sessionBus } = require('../utils/shape');
-const { parse } = require('../../lib/match-rule');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { sessionBus } from '../utils/shape.js';
+import { parse } from '../../lib/match-rule.js';
+import { matches } from '../../lib/match-rule.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';
@@ -130,7 +131,6 @@ describe(
     it('delivers a signal the way a rule we parsed says it should', async () => {
       // The other half: not just that the daemon accepts our rules, but that our
       // matcher agrees with the daemon's routing for the same rule.
-      const { matches } = require('../../lib/match-rule');
       const rule =
         "type='signal',sender='org.freedesktop.DBus'," +
         "interface='org.freedesktop.DBus',member='NameOwnerChanged'," +

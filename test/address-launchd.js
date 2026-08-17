@@ -6,13 +6,13 @@
 // calling `launchctl setenv`, which would change the user's real login session
 // and outlive the test run.
 
-const { describe, it, before, after, beforeEach } = require('node:test');
-const assert = require('assert');
-const fs = require('fs');
-const net = require('net');
-const os = require('os');
-const path = require('path');
-const dbus = require('../index');
+import { describe, it, before, after, beforeEach } from 'node:test';
+import assert from 'node:assert';
+import fs from 'node:fs';
+import net from 'node:net';
+import os from 'node:os';
+import path from 'node:path';
+import * as dbus from '../index.js';
 
 let tmp, socketPath, server;
 const realPath = process.env.PATH;

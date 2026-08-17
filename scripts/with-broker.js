@@ -13,8 +13,8 @@
 // which bus they are talking to, so anywhere the two disagree shows up as a
 // test that passes against one and fails against the other.
 
-const { spawn } = require('child_process');
-const dbus = require('../index');
+import { spawn } from 'node:child_process';
+import * as dbus from '../index.js';
 
 const argv = process.argv.slice(2);
 const args = argv[0] === '--' ? argv.slice(1) : argv;

@@ -1,10 +1,10 @@
 // readOneLine backs the SASL handshake, so it has to cope with lines split
 // across chunks and must leave the remainder of a chunk readable.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { PassThrough } = require('stream');
-const readOneLine = require('../lib/readline');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { PassThrough } from 'node:stream';
+import readOneLine from '../lib/readline.js';
 
 const line = stream =>
   new Promise(resolve => readOneLine(stream, buf => resolve(buf.toString())));

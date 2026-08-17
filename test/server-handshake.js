@@ -6,16 +6,16 @@
 // server, so both halves have to agree; the protocol cases script a raw client
 // by hand, because a well-behaved client will not send BEGIN out of turn.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const crypto = require('crypto');
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const { PassThrough, Duplex } = require('stream');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { PassThrough, Duplex } from 'node:stream';
 
-const clientAuth = require('../lib/handshake');
-const serverAuth = require('../lib/server-handshake');
+import clientAuth from '../lib/handshake.js';
+import serverAuth from '../lib/server-handshake.js';
 
 const hex = value => Buffer.from(String(value), 'ascii').toString('hex');
 const unhex = value => Buffer.from(value, 'hex').toString('ascii');

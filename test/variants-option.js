@@ -5,16 +5,16 @@
 // from the value is a guess, since `u`, `i` and `d` all arrive as a JS number.
 // See BIG_FUTURE_PLANS 2.1.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const DBusBuffer = require('../lib/dbus-buffer');
-const marshall = require('../lib/marshall');
-const {
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import DBusBuffer from '../lib/dbus-buffer.js';
+import marshall from '../lib/marshall.js';
+import {
   Variant,
   variantValue,
   variantSignature,
   toPlain
-} = require('../lib/values');
+} from '../lib/values.js';
 
 const read = (signature, body, options) =>
   new DBusBuffer(marshall(signature, body), 0, options).read(signature);

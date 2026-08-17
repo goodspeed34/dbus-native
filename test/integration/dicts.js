@@ -4,11 +4,11 @@
 // service actually receives what the object described, which is the question
 // behind #3, #91 and #132.
 
-const { describe, it, before, after } = require('node:test');
-const assert = require('assert');
-const { EventEmitter } = require('events');
-const { Variant, toPlain, variantSignature } = require('../../lib/values');
-const { sessionBus, VARIANTS } = require('../utils/shape');
+import { describe, it, before, after } from 'node:test';
+import assert from 'node:assert';
+import { EventEmitter } from 'node:events';
+import { Variant, toPlain, variantSignature } from '../../lib/values.js';
+import { sessionBus, VARIANTS } from '../utils/shape.js';
 
 const NO_BUS =
   !process.env.DBUS_SESSION_BUS_ADDRESS && 'no DBUS_SESSION_BUS_ADDRESS';

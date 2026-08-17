@@ -1,19 +1,21 @@
 // dbus.freedesktop.org/doc/dbus-specification.html
 
-const { EventEmitter } = require('events');
-const net = require('net');
+import { EventEmitter } from 'node:events';
+import * as net from 'node:net';
 
-const { connectToAddress } = require('./lib/address');
-const constants = require('./lib/constants');
-const message = require('./lib/message');
-const clientHandshake = require('./lib/handshake');
-const serverHandshake = require('./lib/server-handshake');
-const MessageBus = require('./lib/bus');
-const server = require('./lib/server');
-const values = require('./lib/values');
-const errors = require('./lib/errors');
-const names = require('./lib/names');
-const { publishSend, publishReceive } = require('./lib/diagnostics');
+import { connectToAddress } from './lib/address.js';
+import constants from './lib/constants.js';
+import * as message from './lib/message.js';
+import clientHandshake from './lib/handshake.js';
+import serverHandshake from './lib/server-handshake.js';
+import MessageBus from './lib/bus.js';
+import * as server from './lib/server.js';
+import * as values from './lib/values.js';
+import * as errors from './lib/errors.js';
+import * as names from './lib/names.js';
+import { publishSend, publishReceive } from './lib/diagnostics.js';
+import { defineInterface } from './lib/define-interface.js';
+import { createBroker } from './lib/broker.js';
 
 // macOS does not set DBUS_SESSION_BUS_ADDRESS -- dbus there advertises the
 // session bus through launchd instead, which is what dbus's own client library
@@ -395,63 +397,62 @@ function createConnection(opts) {
   return self;
 }
 
-module.exports.createClient = function (params) {
+export function createClient(params) {
   const connection = createConnection(params || {});
   return new MessageBus(connection, params || {});
-};
+}
 
-module.exports.systemBus = function () {
-  return module.exports.createClient({
+export function systemBus() {
+  return createClient({
     busAddress:
       process.env.DBUS_SYSTEM_BUS_ADDRESS ||
       'unix:path=/var/run/dbus/system_bus_socket'
   });
-};
+}
 
-module.exports.sessionBus = function (opts) {
-  return module.exports.createClient(opts);
-};
+export function sessionBus(opts) {
+  return createClient(opts);
+}
 
-module.exports.messageType = constants.messageType;
+export const messageType = constants.messageType;
 
 // The error classes, so `err instanceof DBusError` works. index.d.ts has
 // declared these since 0.6 but index.js never exported them, which made the
 // documented way of handling errors impossible at runtime.
-module.exports.DBusError = errors.DBusError;
-module.exports.TimeoutError = errors.TimeoutError;
-module.exports.AbortError = errors.AbortError;
-module.exports.ConnectionClosedError = errors.ConnectionClosedError;
-module.exports.UnknownInterfaceError = errors.UnknownInterfaceError;
+export const DBusError = errors.DBusError;
+export const TimeoutError = errors.TimeoutError;
+export const AbortError = errors.AbortError;
+export const ConnectionClosedError = errors.ConnectionClosedError;
+export const UnknownInterfaceError = errors.UnknownInterfaceError;
 
 // Forward-compatible value helpers. Code written against these behaves the
 // same before and after the 2.0 type-system change -- see docs/deprecations.md
 // and RELEASE_PLAN.md.
-module.exports.Variant = values.Variant;
-module.exports.variantValue = values.variantValue;
-module.exports.variantSignature = values.variantSignature;
-module.exports.toPlain = values.toPlain;
+export const Variant = values.Variant;
+export const variantValue = values.variantValue;
+export const variantSignature = values.variantSignature;
+export const toPlain = values.toPlain;
 
 // The D-Bus naming rules, exported because anything building names at runtime
 // -- from a config file, a device id, a user-supplied string -- wants to check
 // before it exports rather than catch the throw afterwards.
-module.exports.isValidObjectPath = names.isValidObjectPath;
-module.exports.isValidInterfaceName = names.isValidInterfaceName;
-module.exports.isValidErrorName = names.isValidErrorName;
-module.exports.isValidMemberName = names.isValidMemberName;
-module.exports.isValidPropertyName = names.isValidPropertyName;
-module.exports.isValidBusName = names.isValidBusName;
+export const isValidObjectPath = names.isValidObjectPath;
+export const isValidInterfaceName = names.isValidInterfaceName;
+export const isValidErrorName = names.isValidErrorName;
+export const isValidMemberName = names.isValidMemberName;
+export const isValidPropertyName = names.isValidPropertyName;
+export const isValidBusName = names.isValidBusName;
 
-module.exports.createConnection = createConnection;
+export { createConnection };
 
 // Declaring a service interface without the positional arrays. Compiles to the
 // classic descriptor, so it exports through the same path. See
 // lib/define-interface.js.
-module.exports.defineInterface =
-  require('./lib/define-interface').defineInterface;
+export { defineInterface };
 
-module.exports.createServer = server.createServer;
+export const createServer = server.createServer;
 
 // An in-process message bus. Not a replacement for dbus-daemon -- no security
 // policy, no service activation -- but enough of one to route between clients,
 // which is what `createServer` on its own never did. See lib/broker.js.
-module.exports.createBroker = require('./lib/broker').createBroker;
+export { createBroker };

@@ -13,15 +13,15 @@
 // which is what these tests demonstrate, against a channel that does exactly
 // that. See ROADMAP.md 2.8 for the transports that were measured and rejected.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const marshall = require('../lib/marshall');
-const unmarshall = require('../lib/unmarshall');
-const parseSignature = require('../lib/signature');
-const constants = require('../lib/constants');
-const message = require('../lib/message');
-const dbus = require('../index');
-const { fdChannelPair, plainChannelPair } = require('./utils/fd-transport');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import marshall from '../lib/marshall.js';
+import unmarshall from '../lib/unmarshall.js';
+import parseSignature from '../lib/signature.js';
+import constants from '../lib/constants.js';
+import * as message from '../lib/message.js';
+import * as dbus from '../index.js';
+import { fdChannelPair, plainChannelPair } from './utils/fd-transport.js';
 
 describe("UNIX_FD ('h') as a value", () => {
   it('parses as a signature, since it is a real type', () => {

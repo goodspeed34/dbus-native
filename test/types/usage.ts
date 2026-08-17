@@ -4,7 +4,7 @@
 //
 // Every construct here mirrors something documented in the README.
 
-import dbus = require('../..');
+import * as dbus from '../../index.js';
 import {
   MessageBus,
   DBusInterface,
@@ -16,8 +16,8 @@ import {
   variantValue,
   toPlain,
   Message
-} from '../..';
-import { toClassicError } from '../../lib/compat';
+} from '../../index.js';
+import { toClassicError } from '../../lib/compat.js';
 
 async function calls() {
   const bus: MessageBus = dbus.sessionBus({ timeout: 25000 });

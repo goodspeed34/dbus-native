@@ -3,14 +3,24 @@
 // Every case here crashed the process (or silently produced wrong data)
 // before the read loop was hardened.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { PassThrough, Duplex } = require('stream');
-const { execFile } = require('child_process');
-const dbus = require('../index');
-const message = require('../lib/message');
-const constants = require('../lib/constants');
-const DBusBuffer = require('../lib/dbus-buffer');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { PassThrough, Duplex } from 'node:stream';
+import { execFile } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import * as dbus from '../index.js';
+import * as message from '../lib/message.js';
+import marshall from '../lib/marshall.js';
+import unmarshall from '../lib/unmarshall.js';
+import constants from '../lib/constants.js';
+import DBusBuffer from '../lib/dbus-buffer.js';
+
+// Absolute paths for the embedded child-process scripts (CJS, run via
+// `node -e`), computed here because `require.resolve` does not exist in ESM.
+const INDEX_PATH = fileURLToPath(new URL('../index.js', import.meta.url));
+const MESSAGE_PATH = fileURLToPath(
+  new URL('../lib/message.js', import.meta.url)
+);
 
 const methodCall = (over = {}) =>
   message.marshall({
@@ -270,8 +280,8 @@ describe('connection error handling', () => {
     (t, done) => {
       const script = `
       const { PassThrough, Duplex } = require('stream');
-      const dbus = require(${JSON.stringify(require.resolve('../index'))});
-      const message = require(${JSON.stringify(require.resolve('../lib/message'))});
+      const dbus = require(${JSON.stringify(INDEX_PATH)});
+      const message = require(${JSON.stringify(MESSAGE_PATH)});
       const toClient = new PassThrough();
       const fromClient = new PassThrough();
       const socket = Duplex.from({ readable: toClient, writable: fromClient });
@@ -335,14 +345,13 @@ describe('DBusBuffer options handling', () => {
   });
 
   it('still defaults ayBuffer to true', () => {
-    const buf = require('../lib/marshall')('ay', [Buffer.from([1, 2, 3])]);
+    const buf = marshall('ay', [Buffer.from([1, 2, 3])]);
     assert.ok(Buffer.isBuffer(new DBusBuffer(buf, 0, {}).read('ay')[0]));
   });
 });
 
 describe('unmarshall with an empty signature', () => {
   it('returns an empty list, like every other signature', () => {
-    const unmarshall = require('../lib/unmarshall');
     assert.deepStrictEqual(unmarshall(Buffer.alloc(0), ''), []);
   });
 });

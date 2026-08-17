@@ -11,7 +11,7 @@
 // it has the property that matters: fds arrive in the same order as the bytes
 // they accompanied, which is what lets a message take its share by count.
 
-const { Duplex } = require('stream');
+import { Duplex } from 'node:stream';
 
 class FdChannel extends Duplex {
   constructor() {
@@ -76,4 +76,4 @@ function plainChannelPair() {
   return [a, b];
 }
 
-module.exports = { FdChannel, fdChannelPair, PlainChannel, plainChannelPair };
+export { FdChannel, fdChannelPair, PlainChannel, plainChannelPair };

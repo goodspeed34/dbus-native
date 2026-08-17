@@ -4,12 +4,12 @@
 // rather than by round-tripping through this library, so the test cannot pass
 // just because a writer and a reader share the same mistake.
 
-const { describe, it } = require('node:test');
-const assert = require('assert');
-const { PassThrough } = require('stream');
-const message = require('../lib/message');
-const constants = require('../lib/constants');
-const DBusBuffer = require('../lib/dbus-buffer');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { PassThrough } from 'node:stream';
+import * as message from '../lib/message.js';
+import constants from '../lib/constants.js';
+import DBusBuffer from '../lib/dbus-buffer.js';
 
 const BE = constants.endianness.be;
 const LE = constants.endianness.le;

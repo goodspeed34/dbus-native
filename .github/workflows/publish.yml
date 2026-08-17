@@ -3,6 +3,9 @@
 # Uses OIDC (no token): link this repo to the package in the JSR package
 # settings page (jsr.io/@goodspeed/dbus-native -> Settings -> GitHub Actions).
 # Keep the tag and the `version` in jsr.json in sync, e.g. `v0.16.0`.
+#
+# `npm ci` is required: the jsr CLI's `deno publish` runs with --unstable-byonm,
+# which resolves bare specifiers like `xml2js` from node_modules.
 
 name: publish
 
@@ -20,7 +23,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
+      - run: npm ci
       - run: npx -y jsr publish
